@@ -10,7 +10,7 @@ app.use(express.static(path.join(root, 'bower_components')));
 app.use(bp.json());
 
 // require('./server/config/mongoose.js'),		
-require('./clients/config/routes.js')(app);
+// require('./clients/config/routes.js')(app);
 
 app.listen(port, function() {
 	console.log(`server running on port ${ port }`);
