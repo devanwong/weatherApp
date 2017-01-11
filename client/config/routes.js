@@ -1,11 +1,10 @@
-var weatherApp = angular.module('weatherApp', ['ngRoute', 'ngResource']);
-
-// Service
-weatherApp.service('cityService', function() {
-	this.city = "Oakland, California";
-	console.log(this.city)
-});
-
+//Allowing Angular to make calls to the openweather app.
+weatherApp.config(['$sceDelegateProvider', function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+        'self',
+        'http://api.openweathermap.org/**'
+    ]);
+}])
 //Routes
 weatherApp.config(function ($routeProvider){
 	$routeProvider
@@ -19,4 +18,10 @@ weatherApp.config(function ($routeProvider){
 		templateUrl: 'partials/forecast.html',
 		controller:'forecastController'
 	})
+
+	.when('/forecast/:days', {
+		templateUrl: 'partials/forecast.html',
+		controller: 'forecastController'
+	})
 });
+
